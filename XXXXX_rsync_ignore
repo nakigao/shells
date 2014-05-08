@@ -1,0 +1,14 @@
+# ========================================
+# ignore setting file for rsync command
+# USAGE: --exclude-from=XXXXX_rsync_ignore
+# ========================================
+
+# project directories/files
+.idea
+.svn
+
+# directories
+# add something here
+
+# files
+# add something here
