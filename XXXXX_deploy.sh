@@ -21,8 +21,8 @@ FILE_PERMISSION="0664"
 DIRECTORY_PERMISSION="0775"
 DIST_DIR="/path/to/dist/directory/"
 
-sudo find ${DIST_DIR} -user ${USER} -type f -print | xargs sudo chmod ${FILE_PERMISSION}
-sudo find ${DIST_DIR} -user ${USER} -type d -print | xargs sudo chmod ${DIRECTORY_PERMISSION}
+sudo find ${DIST_DIR} -user ${USER} -type f -print | xargs --no-run-if-empty sudo chmod ${FILE_PERMISSION} || exit
+sudo find ${DIST_DIR} -user ${USER} -type d -print | xargs --no-run-if-empty sudo chmod ${DIRECTORY_PERMISSION} || exit
 
-sudo find ${DIST_DIR} -user ${USER} -type f -print | xargs sudo chown ${TARGET_USER}:${TARGET_GROUP}
-sudo find ${DIST_DIR} -user ${USER} -type d -print | xargs sudo chown ${TARGET_USER}:${TARGET_GROUP}
+sudo find ${DIST_DIR} -user ${USER} -type f -print | xargs --no-run-if-empty sudo chown ${TARGET_USER}:${TARGET_GROUP} || exit
+sudo find ${DIST_DIR} -user ${USER} -type d -print | xargs --no-run-if-empty sudo chown ${TARGET_USER}:${TARGET_GROUP} || exit
